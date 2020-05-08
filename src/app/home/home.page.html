@@ -1,0 +1,538 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Mon compte 
+    
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <img class="logo img-responsive" style="display: inline-flex !important;" src="/assets/topBarLl.JPG" alt="" />
+  <ion-card  class="welcome-card" style="padding: 0 !important;margin: 0 !important;">
+  <ion-card-header style="background-color: transparent;">
+  </ion-card-header>
+  <ion-card-content style="margin-bottom: 4rem;">
+    
+    <div *ngIf="step == 0" style="margin-top: 3rem;">
+      <div class="recap">
+        <ion-row  style=" width: 100%;">        
+          <ion-grid >
+            <ion-row >
+              <ion-col size="2" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;" >J1</ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;background-color: #ADFF2F;"> <ion-label style="font-size: 1rem!important;">01/05/2020  </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;">Matin </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;background-color: #ADFF2F;"> <ion-label style="font-size: 1rem!important;">Soir</ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="2" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;" >J2</ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;background-color: #ADFF2F;"> <ion-label style="font-size: 1rem!important; ">02/05/2020  </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;">Matin </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;background-color: #ADFF2F;"> <ion-label style="font-size: 1rem!important;">Soir</ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="2" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;" >J3</ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;background-color: #ADFF2F;"> <ion-label style="font-size: 1rem!important;">03/05/2020  </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;background-color: #ADFF2F;" > <ion-label style="font-size: 1rem!important;">Matin </ion-label></ion-col>
+              <ion-col size="3" style="text-align: start;"> <ion-label style="font-size: 1rem!important;">Soir</ion-label></ion-col>
+            </ion-row> 
+           
+          </ion-grid>
+        </ion-row>
+      </div>
+      
+      <ion-label >Selectionnez le moment de la journée </ion-label>
+     
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button style="font-size: 1.5rem;" (click)="next()"  color="#1cb495">Matin</ion-button>
+        <ion-button style="font-size: 1.5rem;" (click)="next()"  color="#1cb495">Soir</ion-button>
+     </div>
+      
+    </div>    
+    <div *ngIf="step == 1" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 1/15 :</strong>Quel est votre Température (matin et soir) ? </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/temperature.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="temperature" [ngModelOptions]="{standalone: true}" placeholder="votre Température "></ion-input>
+      </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!temperature || temperature ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 2" style="margin-top: 3rem;">
+        
+      <ion-label > <strong>Question 2/15 :</strong> Avez-vous eu la Toux dans la journée ? </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/tous.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="toux = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="toux = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!toux || toux ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+
+    <div *ngIf="step == 3" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 3/15 :</strong>Avez-vous eu une Difficulté à respirer dans la journée ? </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/difRespiratoir.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="difRef = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="difRef = 'oui'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!difRef || difRef ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+        
+    <div *ngIf="step == 4" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 4/15 :</strong> Avez-vous un Mal de gorge aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/malgorge.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="malgorge = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="malgorge = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!malgorge || malgorge ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 5" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 5/15 :</strong>Avez-vous Le nez bouché aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/nezBouche.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="nezBouche = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="nezBouche = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!nezBouche || nezBouche ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 6" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 6/15 :</strong>Avez-vous une Conjonctivite aujourd'hui ?   </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/conjonctivite.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="conjonctivite = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="conjonctivite = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!conjonctivite || conjonctivite ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 7" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 7/15 :</strong>Avez-vous des Maux de tête aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/mauxTete.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="mauxTete = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="mauxTete = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!mauxTete || mauxTete ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 8" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 8/15 :</strong>Avez-vous des Douleurs musculaires et/ou articulaires aujourd'hui ? </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/douleurMuscle.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="douleurMuscle = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="douleurMuscle = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!douleurMuscle || douleurMuscle ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 9" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 9/15 :</strong> Avez-vous Une fatigue intense aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/fatiqueIntence.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="fatiqueIntence = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="fatiqueIntence = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!fatiqueIntence || fatiqueIntence ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 10" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 10/15 :</strong>Avez-vous Vomi aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/vomi.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="vomi = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="vomi = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!vomi || vomi ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+  
+    <div *ngIf="step == 11" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 11/15 :</strong>Avez-vous eu de la Diarrhée aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/diarrhee.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="diarrhee = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="diarrhee = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!diarrhee || diarrhee ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 12" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 12/15 :</strong>Ressentez-vous eu une Perte de l’odorat aujourd'hui ? </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/perteOdorat.jpg" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="perteOdorat = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="perteOdorat = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!perteOdorat || perteOdorat ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 13" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 13/15 :</strong>Ressentez-vous eu une Perte du goût aujourd'hui ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/perteGout.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="perteGout = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="perteGout = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!perteGout || perteGout ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 14" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 14/15 :</strong>Ressentez-vous un Autre signe aujourd'hui ? </ion-label>
+
+      
+      <ion-item>
+        <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="autresigne" [ngModelOptions]="{standalone: true}" placeholder="Autres signe"></ion-input>
+
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!autresigne || autresigne ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 15" style="margin-top: 3rem;">
+        
+      <ion-label ><strong>Question 15/15 :</strong>Dans votre entourage quelqu’un présente t’il l’un des Symptômes cités ?  </ion-label>
+      <div class="img-container">
+        <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/symp.JPG" alt="" />
+      </div>
+      
+      <ion-item>
+        <ion-radio-group value="biff">
+          <ion-row style="margin-left: 3rem;">
+            <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem; margin-bottom: -2rem;" >OUI</ion-label>
+            <ion-radio (click)="symEntourage = 'oui'" color="danger"  value="oui"></ion-radio>
+          </ion-col>  
+        <ion-col>
+            <ion-label style="font-size: 20px !important;margin-left: 2rem;margin-bottom: -2rem;">NON</ion-label>
+            <ion-radio (click)="symEntourage = 'non';symEntourageDet = 'non'" color="success" value="non"></ion-radio>  
+          </ion-col>
+        </ion-row>
+    </ion-radio-group>  
+       </ion-item>
+       <ion-item *ngIf="symEntourage == 'oui'">
+        <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="symEntourageDet" [ngModelOptions]="{standalone: true}" placeholder="Autres signe"></ion-input>
+       </ion-item>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+        <ion-button (click)="next()" [disabled]="!symEntourageDet || symEntourageDet ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    <div *ngIf="step == 16" style="margin-top: 2rem;">
+        
+      <ion-label >Récapitulatif  </ion-label>
+     
+      <div class="recap">
+        <ion-row  style=" width: 100%;">        
+          <ion-grid >
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 1/15 :</strong>votre Température  : </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{temperature}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 2/15 :</strong>Avez-vous eu la Toux : </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{toux}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 3/15 :</strong>Avez-vous eu une Difficulté à respirer   : </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{difRef}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 4/15 :</strong>Avez-vous un Mal de gorge aujourd'hui ?  </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{malgorge}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 5/15 :</strong>Avez-vous Le nez bouché aujourd'hui ?   </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{nezBouche}} </i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 6/15 :</strong>Avez-vous une Conjonctivite aujourd'hui ?  </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{conjonctivite}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 7/15 :</strong>Avez-vous des Maux de tête aujourd'hui ?  </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{mauxTete}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 8/15 :</strong>Avez-vous des Douleurs musculaires et/ou articulaires aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{douleurMuscle}}</i> </ion-label></ion-col>
+            </ion-row> 
+
+
+            
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 9/15 :</strong>Avez-vous Une fatigue intense aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{fatiqueIntence}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 10/15 :</strong>Avez-vous Vomi aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{vomi}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 11/15 :</strong>Avez-vous eu de la Diarrhée aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{diarrhee}}</i> </ion-label></ion-col>
+            </ion-row> 
+
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 12/15 :</strong>Ressentez-vous eu une Perte de l’odorat aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{perteOdorat}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 13/15 :</strong>Ressentez-vous eu une Perte du goût aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{perteGout}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 14/15 :</strong>Ressentez-vous un Autre signe aujourd'hui ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{autresigne}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row >
+              <ion-col size="8" style="text-align: start;" > <ion-label ><strong> Q 15/15 :</strong>Dans votre entourage quelqu’un présente t’il l’un des Symptômes cités ? </ion-label></ion-col>
+              <ion-col size="4" style="text-align: start;"> <ion-label ><i>{{symEntourage}}</i> </ion-label></ion-col>
+            </ion-row> 
+            
+          </ion-grid>
+
+      </ion-row>
+       
+    </div>
+    <div style="text-align: center;margin-top: 1rem;">
+      <ion-button  (click)="step = 1" color="#1cb495"><ion-icon name="arrow-back"></ion-icon>Modifier</ion-button>
+      <ion-button (click)="next()"  color="#1cb495">Continuer<ion-icon name="arrow-forward"></ion-icon></ion-button>
+    </div>
+    </div>  
+    <div *ngIf="step == 17" style="margin-top: 5rem;">
+        
+      <div class="recap">
+        <ion-row>
+        <ion-label > <i>Vos réponses de ce jour (J14 - Matin) ont été enregistrés avec succès</i>  </ion-label>
+      </ion-row>
+
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button (click)="valider()"  color="#1cb495">Valider<ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+    </div>
+    </div>
+  
+</ion-card-content>
+</ion-card>
+</ion-content>

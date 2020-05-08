@@ -1,0 +1,40 @@
+
+
+<ion-content class="center-vertical" style="height: 100%;">
+  <ion-card class="welcome-card " style="background-color: transparent;height: 100%;margin: 0"  >
+    <img class="logo img-responsive" src="/assets/login.jpg" alt="" />
+    <ion-card-header style="
+    background-color: transparent;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;" >
+      <ion-card-title style="color: #1f2f49;text-align: center;font-size: 4rem;">Login</ion-card-title>
+    </ion-card-header>  
+    <ion-card-content style="
+    background-color: transparent;
+    /* border-radius: 5%; */
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;">
+
+      <ion-item *ngIf="errorMessage == -1" style="background-color: transparent;;">
+        <ion-icon name="close-circle-outline" style="font-size: 64px;color:#a94442"></ion-icon><p style="color:#a94442;font-size: 18px;">Error : Échec d'authentification !!!</p>
+      </ion-item>
+      <ion-item>
+        <ion-input style="font-size: 1.5rem;text-align: center;" type="text" [(ngModel)]="code" [ngModelOptions]="{standalone: true}" placeholder="Votre code"></ion-input>
+      </ion-item>
+
+
+      <ion-row style="margin-top: 50px;">
+        <ion-col>
+          <div style="text-align: center;"><span style="font-size: 17px;color: black;">Pas encore inscrit <a (click)="inscription()"><b> Créer un compte</b></a></span></div>
+        </ion-col>
+      </ion-row>
+      
+      <div style="text-align: center !important;margin-top: 1rem;">
+        <ion-button [disabled]="!code || code == ''" (click)="presentLoading()" color="#1cb495">Connexion</ion-button>
+      </div>
+    </ion-card-content>
+    </ion-card>
+ 
+
+ 
+</ion-content>

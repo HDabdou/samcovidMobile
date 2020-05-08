@@ -1,0 +1,64 @@
+#rounded {
+  width: 100%;
+  height: 100px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;  
+}
+
+#container {
+  width: 300px; 
+  margin-left:auto; 
+  margin-right: auto; 
+}
+ion-content{
+  --background: url("../../assets/bg01.jpg") ;
+  width:100%
+}
+ion-item{
+  background: white;
+  color: #1f2f49;
+  border-radius: 10px 10px 10px 0px;
+  padding: 0.5rem;
+  box-shadow: 0 6px 16px -3px black;
+}
+.recap{
+  background: white;
+  color: #1f2f49;
+  border-radius: 10px 10px 10px 0px;
+  padding: 0.5rem;
+  box-shadow: 0 6px 16px -3px black;
+}
+ion-button{
+  background-color: #1cb495;
+  box-shadow: 0 6px 16px -3px black;
+  border-radius: 10px 10px 10px 0px;
+}
+ion-label{
+  color: #1f2f49 !important;
+  font-size: 1.5rem !important;
+}
+.img-container {
+  text-align: center;
+}
+ion-toolbar{
+  --background: url("../../assets/TopCovid.JPG") ;
+  --color : white ;
+  --box-shadow:0 !important;
+}
+
+.container{
+  margin: 5px;
+ // padding-top: 1rem;
+  //padding-bottom: 1rem;
+background: #fff;
+box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+ion-row{
+  background: transparent !important;
+}
+ion-grid ion-row ion-col{
+  border: 1px solid black;
+  font-size: 1rem;
+}

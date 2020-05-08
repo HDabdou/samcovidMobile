@@ -1,0 +1,671 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="step <= 17">
+      <span >IDENTIFICATION DU PATIENT</span>
+    
+    </ion-title>
+    <ion-title *ngIf="step > 17">
+      <span >SUIVI DU CAS-CONTACT</span>
+    
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card  class="welcome-card" style="padding: 0 !important;margin: 0 !important;">
+    <ion-card-header style="background-color: transparent;">
+      <img class="logo img-responsive" style="display: inline-flex !important;" src="/assets/topBarLl.JPG" alt="" />
+    </ion-card-header>
+    <ion-card-content style="margin-bottom: 4rem;">
+      <div *ngIf="step == 0" style="margin-top: 3rem;">
+        
+        <ion-label >Personne répondant aux questions: Patient  /  Tiers
+        </ion-label>
+        <div style="margin-top: 1rem;" class="img-container">
+          <ion-row>
+          <ion-col (click)="next()">
+            <ion-row style="text-align: center;margin-left: 5px;">
+            <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/patient.jpg" alt="" />
+          </ion-row>
+            <ion-row style="text-align: center;margin-left: 5px;">
+            <ion-label >Patient</ion-label>
+          </ion-row>
+          </ion-col>
+          <ion-col (click)="next()">
+            <ion-row style="text-align: center;margin-left: 5px;">
+            <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/tiers.jpg" alt="" />
+          </ion-row>
+            <ion-row style="text-align: center;margin-left: 5px;">
+            <ion-label >Tiers</ion-label>
+          </ion-row>
+          </ion-col>
+        </ion-row>
+    
+        </div>
+      </div>
+      <div *ngIf="step == 1" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 1/18</strong> : Quel est votre Code ?</ion-label>
+        <div class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/code.jpg" alt="" />
+        </div>
+        
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="code" [ngModelOptions]="{standalone: true}" placeholder="votre code"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!code || code ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 2" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 2/18</strong>Quel est votre Nom ?</ion-label>
+       
+        <div class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/user.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" placeholder="votre nom"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!nom || nom ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step ==3" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 3/18</strong>Quel est votre Prénom ? </ion-label>
+        
+        <div class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/user.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" placeholder="votre Prénom"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!prenom || prenom ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 4" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 4/18</strong>Quel est votre Date de naissance? </ion-label>
+        
+        <div class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/bd1.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >Date de naissance? </ion-label>
+
+          <ion-input style="text-align: center;font-size: 1rem;" type="date" [(ngModel)]="dateNaissance" [ngModelOptions]="{standalone: true}" placeholder="votre date de naissance"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next();" [disabled]="!dateNaissance || dateNaissance ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step ==5" style="margin-top: 3rem;">
+        
+        <ion-label *ngIf="sexe == undefined || sexe =='m'" ><strong>Question 5/18</strong>Quel est votre Sexe ? </ion-label>
+        
+        <div *ngIf="sexe == undefined || sexe =='m'" class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/sexe.jpg" alt="" />
+        </div>
+        <ion-item *ngIf="sexe == undefined || sexe =='m'">
+          <ion-label >votre Sexe : </ion-label>
+          <ion-select [(ngModel)]="sexe"   (ionChange)="playGrossesse()" style="text-align: center;font-size: 1rem;" placeholder="votre sexe">
+            <ion-select-option  value="f">F</ion-select-option>
+            <ion-select-option value="m">M</ion-select-option>
+          </ion-select>      
+          </ion-item>
+          <div *ngIf="sexe == 'f'" style="margin-top: 3rem;">
+        
+            <ion-label ><strong>Question 13/18</strong>Etes vous en état de Grossesse ? </ion-label>
+            
+          <div  class="img-container">
+            <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/grossesse.jpg" alt="" />
+          </div>
+            <ion-item>
+              <ion-label >En état de Grossesse ? </ion-label>
+              <ion-select [(ngModel)]="grossesse"  style="text-align: center;font-size: 1rem;" placeholder="Etes vous en état de Grossesse">
+                <ion-select-option  value="oui">oui</ion-select-option>
+                <ion-select-option  value="non">non</ion-select-option>
+              </ion-select>        
+            </ion-item>
+            <div style="text-align: center;margin-top: 1rem;">
+              <ion-button  (click)="sexe = undefined" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+              <ion-button (click)="next()" [disabled]="!grossesse || grossesse ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+            </div>
+          </div>
+        <div *ngIf="sexe == undefined || sexe =='m'" style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!sexe || sexe ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 6" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 6/18</strong>Quel est votre numéro de Téléphone ? </ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/tel.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="tel" [ngModelOptions]="{standalone: true}" placeholder="votre n° téléphone"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!tel || tel ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 7" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 7/18</strong> : Quelle est votre Région ? </ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/region.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >Votre Région : </ion-label>
+          <ion-select [(ngModel)]="region" interface="popover" style="text-align: center;font-size: 1rem;"  [ngModelOptions]="{standalone: true}" placeholder="Votre Région">
+            <ion-select-option  *ngFor="let p of origin" value="{{p.name}}">{{p.name}}</ion-select-option>
+
+          </ion-select>          
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!region || region ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 8" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 8/18</strong>:Quel est votre Ville ?</ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/ville.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="ville" [ngModelOptions]="{standalone: true}" placeholder="votre ville"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!ville || ville ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 9" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 9/18</strong> : Quel est votre Quartier  ?</ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/quartier.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="quartier" [ngModelOptions]="{standalone: true}" placeholder="votre Quartier"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!quartier || quartier ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 10" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 10/18</strong> : Quel est votre District  ?</ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/district.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="district" [ngModelOptions]="{standalone: true}" placeholder="votre District "></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!district || district ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 11" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 11/18</strong> : Quel est votre Statut matrimonial ?</ion-label>
+        
+        <div  class="img-container">
+          <img *ngIf="statutMatri == undefined" class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/user.jpg" alt="" />
+          <img *ngIf="statutMatri == 'Marié(e)'" class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/marie.jpg" alt="" />
+          <img *ngIf="statutMatri == 'Célibataire'" class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/celib.jpg" alt="" />
+          <img *ngIf="statutMatri == 'Divorcé(e)'" class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/divorce.jpg" alt="" />
+          <img *ngIf="statutMatri == 'Veuf(ve)'" class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/veuf.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >Statut matrimonial :</ion-label>
+
+          <ion-select [(ngModel)]="statutMatri" style="text-align: center;font-size: 1rem;" placeholder="votre Statut matrimonial">
+            <ion-select-option value="Célibataire">Célibataire </ion-select-option>
+            <ion-select-option value="Marié(e)">Marié(e)  <ion-icon name="arrow-back"></ion-icon> </ion-select-option>
+            <ion-select-option value="Divorcé(e)">Divorcé(e)</ion-select-option>
+            <ion-select-option value="Veuf(ve)">Veuf(ve)</ion-select-option>
+          </ion-select>      
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!statutMatri || statutMatri ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 12" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 12/18 :</strong> Vous avez combien d’enfants ? </ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/enfants.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >Nombre d’enfants : </ion-label>
+          <ion-select [(ngModel)]="enfantNo" style="text-align: center;font-size: 1rem;" placeholder="Nombre d’enfants">
+            <ion-select-option *ngFor="let i of nbrEnfant" value="{{i.no}}">{{i.no}}</ion-select-option>
+          </ion-select>        
+          </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!enfantNo || enfantNo ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+     
+      <div *ngIf="step == 13" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 13/18 : </strong>Combien y a t’il de personnes chez vous ?</ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/personAtHome.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="nbrPersonne" [ngModelOptions]="{standalone: true}" placeholder="Nombre personnes chez vous"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!nbrPersonne || nbrPersonne ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 14" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 14/18 : </strong>Combien êtes vous dans votre chambre ? </ion-label>
+       
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/personAtHome.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="nbrChambre" [ngModelOptions]="{standalone: true}" placeholder="Nombre personnes dans votre chambre"></ion-input>
+        </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!nbrChambre || nbrChambre ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 15 " style="margin-top: 5rem;">
+        
+        <ion-label *ngIf="worker == undefined || worker =='non'"><strong>Question 15/18 : </strong>Travaillez-vous ? </ion-label>
+       
+        <div *ngIf="worker == undefined || worker =='non'"  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/worker.jpg" alt="" />
+        </div>
+        <ion-item *ngIf="worker == undefined || worker =='non'">
+          <ion-label >Travaillez-vous ? </ion-label>
+          <ion-select [(ngModel)]="worker" (ionChange)="playWorker()" style="text-align: center;font-size: 1rem;" placeholder="Travaillez-vous">
+            <ion-select-option  value="oui">oui</ion-select-option>
+            <ion-select-option  value="non">non</ion-select-option>
+          </ion-select>         
+         </ion-item>
+         <div *ngIf="worker =='oui'" style="margin-top: 3rem;">
+        
+          <ion-label ><strong>Question 17/18 : </strong> Si vous travaillez, dans quel domaine ? </ion-label>
+                  
+          <div  class="img-container">
+            <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/domaine1.jpg" alt="" />
+          </div>
+          <ion-item>
+            <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="domaine" [ngModelOptions]="{standalone: true}" placeholder=" dans quel domaine"></ion-input>
+          </ion-item>
+          <div  style="text-align: center;margin-top: 1rem;">
+            <ion-button  (click)="worker = undefined" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+            <ion-button (click)="next()" [disabled]="!domaine || domaine ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+          </div>
+        </div>
+        <div *ngIf="worker == undefined || worker =='non'" style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!worker || worker ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+     
+      <div *ngIf="step == 16" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 18/18 : </strong> Etes-vous scolarisé ?  </ion-label>
+              
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/scolariser.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >Etes-vous scolarisé ?  </ion-label>
+
+          <ion-select [(ngModel)]="scolarise" style="text-align: center;font-size: 1rem;" placeholder="Etes-vous scolarisé">
+            <ion-select-option  value="oui">oui</ion-select-option>
+            <ion-select-option  value="non">non</ion-select-option>
+          </ion-select>          
+         </ion-item>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next();calculateDate()" [disabled]="!scolarise || scolarise ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 17" style="margin-top: 5rem;">
+        <ion-label >Récapitulatif  </ion-label>
+       
+        <div class="recap">
+        <ion-row  style=" width: 100%;">        
+          <ion-grid >
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Code : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{code}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Nom : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{nom}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Prénon : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{prenom}}</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Date naissance :  </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{disDate()}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Age :   </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{age}} ans</i>  </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Sexe : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{sexe}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+
+            <ion-row *ngIf="sexe == 'f'">
+              <ion-col size="6" style="text-align: start;" > <ion-label >N° Téléphone :  </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{tel}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Région : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{region}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+            <ion-row >
+              <ion-col size="6" style="text-align: start;" > <ion-label >Quartier : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{quartier}}</i> </ion-label></ion-col>
+              
+            </ion-row> 
+           <ion-row> 
+            <ion-col size="6" style="text-align: start;" > <ion-label >District : </ion-label></ion-col>
+            <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{district}}</i> </ion-label></ion-col>
+            
+          </ion-row> 
+          <ion-row> 
+          <ion-col size="6" style="text-align: start;" > <ion-label >Statut Matrimonial : </ion-label></ion-col>
+          <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{statutMatri}}</i> </ion-label></ion-col>
+          
+          </ion-row> 
+          <ion-row> 
+          <ion-col size="6" style="text-align: start;" > <ion-label >Nombre d'enfants : </ion-label></ion-col>
+          <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{enfantNo}}</i> </ion-label></ion-col>
+          
+        </ion-row> 
+        <ion-row> 
+          <ion-col size="6" style="text-align: start;" > <ion-label >Nombre Personnes à la maison : </ion-label></ion-col>
+          <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{nbrPersonne}}</i> </ion-label></ion-col>
+       </ion-row> 
+          <ion-row> 
+              <ion-col size="6" style="text-align: start;" > <ion-label >Nombre Personnes dans votre chambre: : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{nbrChambre}}</i> </ion-label></ion-col>
+            </ion-row> 
+            <ion-row> 
+              <ion-col size="6" style="text-align: start;" > <ion-label >Travaillez-vous : </ion-label></ion-col>
+              <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{worker}}</i> </ion-label></ion-col>
+          </ion-row> 
+          <ion-row *ngIf="worker == 'oui'"> 
+            <ion-col size="6" style="text-align: start;" > <ion-label >Domaine : </ion-label></ion-col>
+            <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{domaine}}</i> </ion-label></ion-col>
+          </ion-row> 
+          <ion-row> 
+            <ion-col size="6" style="text-align: start;" > <ion-label >Scolarisé : </ion-label></ion-col>
+            <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{scolarise}}</i> </ion-label></ion-col>
+          </ion-row> 
+      
+            
+          </ion-grid>
+
+      </ion-row>
+        </div>
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="step = 1" color="#1cb495"><ion-icon name="arrow-back"></ion-icon>Modifier</ion-button>
+          <ion-button (click)="next()" [disabled]="!scolarise || scolarise ==''" color="#1cb495">Continuer<ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 18" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 1/8 :</strong> Quand avez-vous été au contact d’un Covid+ ? </ion-label>
+           
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/dateContact.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="date" [(ngModel)]="dateContact" [ngModelOptions]="{standalone: true}" placeholder=" dans quel domaine"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next();" [disabled]="!dateContact || dateContact ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 19" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 2/8 :</strong>Quel est votre lien avec le Covid+  </ion-label>
+                   
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/lien.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="lienContact" [ngModelOptions]="{standalone: true}" placeholder="votre lien avec le Covid+"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!lienContact || lienContact ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 20" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 3/8 :</strong>Quand avez-vous été contacté(e) par les autorités sanitaires ?</ion-label>
+                  
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/dateContact.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="date" [(ngModel)]="dateSaniContact" [ngModelOptions]="{standalone: true}" placeholder=" dans quel domaine"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next();getDateS()" [disabled]="!dateSaniContact || dateSaniContact ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 21" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 4/8 :</strong>Avec combien de personnes estimez-vous avoir été au contact depuis votre rencontre avec le Covid+?</ion-label>
+                         
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/personAtHome.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="nbrContactAfter" [ngModelOptions]="{standalone: true}" placeholder="Nombre de personnes en contact"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!nbrContactAfter || nbrContactAfter ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 22" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 5/8 :</strong>Citez les lieux que vous avez fréquentés depuis lors ? </ion-label>
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/lieux.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="lieuAfterConact" [ngModelOptions]="{standalone: true}" placeholder="Citez les lieux"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!lieuAfterConact || lieuAfterConact ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 23" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 6/8 :</strong>Avec vous ressentis des symptômes depuis votre rencontre avec le Covid+? </ion-label>
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/symptome.JPG" alt="" />
+        </div>
+        <ion-item>
+          <ion-label >symptômes</ion-label>
+          <ion-select [(ngModel)]="symptomes"  multiple="true" interface="popover" style="text-align: center;font-size: 1rem;" placeholder="Travaillez-vous">
+            <ion-select-option  value="Aucun">Aucun</ion-select-option>
+            <ion-select-option *ngFor="let i of symptome"  value="{{i.name}}">{{i.name}}</ion-select-option>
+            <ion-select-option (click)="symptomesautre = 1" value="Autre">Autre</ion-select-option>
+          </ion-select>         
+         </ion-item>
+         <ion-item *ngIf="symptomesautre == 1">
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="autresymptomes" [ngModelOptions]="{standalone: true}" placeholder="Autres symptômes"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!symptomes || symptomes ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 24" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 7/8 :</strong>Avez-vous une autre maladie pour laquelle vous êtes suivi(e) ou pas ?  </ion-label>
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/maladie.jpg" alt="" />
+        </div>
+        <ion-item>
+
+          <ion-label >autre maladie</ion-label>
+          <ion-select [(ngModel)]="autreMaladie" multiple="true"  interface="action-sheet"  style="text-align: center;font-size: 1rem;" placeholder="Travaillez-vous">
+            <ion-select-option  value="Aucun">Aucune</ion-select-option>
+            <ion-select-option *ngFor="let i of Maladies" value="{{i.name}}">{{i.name}}</ion-select-option>
+            <ion-select-option (click)="maladAute = 1"   value="Autre">Autre</ion-select-option>
+          </ion-select>    
+        </ion-item>
+        
+        <ion-item *ngIf="maladAute == 1">
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="autreMalad" [ngModelOptions]="{standalone: true}" placeholder="Liste médicaments "></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!autreMaladie || autreMaladie ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 25" style="margin-top: 3rem;">
+        
+        <ion-label ><strong>Question 8/8 :</strong>Listez les médicaments que vous prenez ? </ion-label>
+        <div  class="img-container">
+          <img class="logo img-responsive" style="width: 100px;height: 100px;display: inline-flex !important;" src="/assets/medoc.jpg" alt="" />
+        </div>
+        <ion-item>
+          <ion-input style="text-align: center;font-size: 1rem;" type="text" [(ngModel)]="medoctaken" [ngModelOptions]="{standalone: true}" placeholder="Les médicaments que vous prenez"></ion-input>
+        </ion-item>
+        <div  style="text-align: center;margin-top: 1rem;">
+          <ion-button  (click)="back()" color="#1cb495"><ion-icon name="arrow-back"></ion-icon></ion-button>
+          <ion-button (click)="next()" [disabled]="!medoctaken || medoctaken ==''" color="#1cb495"><ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      <div *ngIf="step == 26" style="margin-top: 5rem;">
+        
+        <ion-label >Récapitulatif  </ion-label>
+       
+        <div class="recap">
+          <ion-row  style=" width: 100%;">        
+            <ion-grid >
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Date contact d'un covid+  : </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{getDateC()}}</i>  </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Lien avec le covid+ : </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{lienContact}}</i>  </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Date contacté par les sanitaires : </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{getDateS()}}</i>  </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Personnes en contact après :  </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{nbrContactAfter}}</i> </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Lieux fréquentés après :   </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{lieuAfterConact}} </i>  </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >vous ressentissez des symptômes : </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{symptomes}}</i> </ion-label></ion-col>
+                
+              </ion-row> 
+  
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >Vous avez d'autre maladie :  </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{autreMaladie}}</i> </ion-label></ion-col>
+                
+              </ion-row> 
+              <ion-row >
+                <ion-col size="6" style="text-align: start;" > <ion-label >les médicaments que vous prenez : </ion-label></ion-col>
+                <ion-col size="6" style="text-align: start;"> <ion-label ><i>{{medoctaken}}</i> </ion-label></ion-col>
+                
+              </ion-row> 
+             
+
+        
+              
+            </ion-grid>
+  
+        </ion-row>
+         
+       
+        
+      </div>
+      <div style="text-align: center;margin-top: 1rem;">
+        <ion-button  (click)="step = 18" color="#1cb495"><ion-icon name="arrow-back"></ion-icon>Modifier</ion-button>
+        <ion-button (click)="next()" [disabled]="!scolarise || scolarise ==''" color="#1cb495">Valider<ion-icon name="arrow-forward"></ion-icon></ion-button>
+      </div>
+      </div>      
+      <div *ngIf="step == 27" style="margin-top: 5rem;">
+        
+       
+        <div class="recap">
+          <ion-row>
+          <ion-label > <i>Vous avez bien été enregistré. Vous allez, tous les jours, recevoir la même série de question auxquelles vous aurez à répondre, pour une surveillance optimale de votre état de santé. Il s'agit du questionnaire suivant :</i>  </ion-label>
+        </ion-row>
+
+       
+        <div style="text-align: center;margin-top: 1rem;">
+          <ion-button (click)="valider()"  color="#1cb495">Valider<ion-icon name="arrow-forward"></ion-icon></ion-button>
+        </div>
+      </div>
+      </div>
+     
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
